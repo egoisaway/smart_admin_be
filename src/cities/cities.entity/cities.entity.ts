@@ -11,12 +11,12 @@ export class Cities {
     @Column()
     name: string;
     
-    @Column()
-    created_at: Date;
+    @Column({type:'date'})
+    created_at: string;
 
-    @Column()
-    deleted_at: Date;
+    @Column({type:'date'})
+    deleted_at: string;
 
-    @Column()
-    modified_at: Date;
+    @Column({type:'date'})
+    modified_at: string;
 }

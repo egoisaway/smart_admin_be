@@ -9,7 +9,6 @@ import { SalesModule } from './sales/sales.module';
 import { RenovationsModule } from './renovations/renovations.module';
 import { RenovationTypesModule } from './renovation_types/renovation_types.module';
 import { PlatformsAccessModule } from './platforms_access/platforms_access.module';
-import { PltformsAccessController } from './pltforms_access/pltforms_access.controller';
 import { PlatformsModule } from './platforms/platforms.module';
 import { PlansModule } from './plans/plans.module';
 import { PeopleModule } from './people/people.module';
@@ -54,7 +53,7 @@ import { CitiesModule } from './cities/cities.module';
     ClientsModule,
     CitiesModule
   ],
-  controllers: [AppController, PltformsAccessController],
+  controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {}

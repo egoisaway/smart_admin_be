@@ -6,7 +6,7 @@ export class Clients {
     id: number;
     
     @Column()
-    cnpj: number;
+    cnpj: string;
     
     @Column()
     name: string;
@@ -20,12 +20,12 @@ export class Clients {
     @Column()
     renovation_type_id: number;
 
-    @Column()
-    created_at: Date;
+    @Column({type:'date'})
+    created_at: string;
 
-    @Column()
-    deleted_at: Date;
+    @Column({type:'date'})
+    deleted_at: string;
 
-    @Column()
-    modified_at: Date;
+    @Column({type:'date'})
+    modified_at: string;
 }
