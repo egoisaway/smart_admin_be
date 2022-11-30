@@ -20,12 +20,20 @@ export class ClientsController {
             rows
         })
     }
-
-    @Get('/:id')
-    async findById(@Res() response, @Param('id') id) {
-        const row = await this.service.getOne(id);
+    
+    @Get('/full')
+    async fetchFull(@Res() response) {
+        const rows = await this.service.getFull();
         return response.status(HttpStatus.OK).json({
-            row
+            rows
+        })
+    }
+
+    @Post('/find')
+    async find(@Res() response, @Body() params) {
+        const rows = await this.service.find(params);
+        return response.status(HttpStatus.OK).json({
+            rows
         })
     }
 }
