@@ -21,11 +21,11 @@ export class SalesController {
         })
     }
 
-    @Get('/:id')
-    async findById(@Res() response, @Param('id') id) {
-        const row = await this.service.getOne(id);
+    @Get('/full')
+    async fetchFull(@Res() response) {
+        const rows = await this.service.getFull();
         return response.status(HttpStatus.OK).json({
-            row
+            rows
         })
     }
 }
