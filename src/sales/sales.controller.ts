@@ -28,4 +28,12 @@ export class SalesController {
             rows
         })
     }
+
+    @Post('/find')
+    async find(@Res() response, @Body() params) {
+        const rows = await this.service.find(params);
+        return response.status(HttpStatus.OK).json({
+            rows
+        })
+    }
 }

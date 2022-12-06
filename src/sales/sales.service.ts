@@ -10,7 +10,7 @@ export class SalesService {
         @InjectRepository(Sales)
         private repository: Repository<Sales>,
 
-        @InjectRepository(Sales)
+        @InjectRepository(SalesFull)
         private view: Repository<SalesFull>
     ){}
 
@@ -22,6 +22,9 @@ export class SalesService {
         return this.repository.save(client);
     }
 
+    find(params): Promise<SalesFull[]> {
+        return this.view.find(params);
+    }
     getFull(): Promise<SalesFull[]> {
         return this.view.find();
     }

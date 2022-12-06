@@ -25,10 +25,4 @@ export class SalesFull {
 
     @Column()
     created_at: Date;
-
-    @Column()
-    deleted_at: Date;
-
-    @Column()
-    modified_at: Date;
 }
