@@ -1,9 +1,9 @@
 import { Body, Controller, Get, HttpStatus, Param, Post, Res } from '@nestjs/common';
-import { PeopleService } from './people.service';
+import { PeopleJobsService } from './people_jobs.service';
 
-@Controller('people')
-export class PeopleController {
-    constructor(private readonly service: PeopleService){}
+@Controller('people-jobs')
+export class PeopleJobsController {
+    constructor(private readonly service: PeopleJobsService){}
 
     @Post()
     async create(@Res() response, @Body() data) {
@@ -21,11 +21,11 @@ export class PeopleController {
         })
     }
 
-    @Post('/find')
-    async find(@Res() response, @Body() params) {
-        const rows = await this.service.find(params);
+    @Get('/:id')
+    async findById(@Res() response, @Param('id') id) {
+        const row = await this.service.getOne(id);
         return response.status(HttpStatus.OK).json({
-            rows
+            row
         })
     }
 }

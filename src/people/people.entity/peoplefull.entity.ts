@@ -1,7 +1,7 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
-export class People {
+export class PeopleFull {
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -9,20 +9,23 @@ export class People {
     client_id: number;
 
     @Column()
-    cpf: number;
+    client_name: string;
+
+    @Column()
+    client_cnpj: number;
 
     @Column()
     name: string;
+    
+    @Column()
+    cpf: number;
 
     @Column()
     job: number;
 
     @Column()
+    job_name: string;
+
+    @Column()
     created_at: Date;
-
-    @Column()
-    deleted_at: Date;
-
-    @Column()
-    modified_at: Date;
 }

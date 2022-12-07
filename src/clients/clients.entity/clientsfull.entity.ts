@@ -18,6 +18,9 @@ export class ClientsFull {
     city: string;
 
     @Column()
+    renovation_type: string;
+
+    @Column()
     can_renovate: string;
 
     @Column()

@@ -14,8 +14,8 @@ export class RenovationTypesService {
         return this.repository.find();
     }
 
-    getOne(id): Promise<RenovationTypes> {
-        return this.repository.findOne(id);
+    find(params): Promise<RenovationTypes[]> {
+        return this.repository.find(params);
     }
 
     create(client): Promise<RenovationTypes> {

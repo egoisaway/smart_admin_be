@@ -21,11 +21,11 @@ export class RenovationTypesController {
         })
     }
 
-    @Get('/:id')
-    async findById(@Res() response, @Param('id') id) {
-        const row = await this.service.getOne(id);
+    @Post('/find')
+    async find(@Res() response, @Body() params) {
+        const rows = await this.service.find(params);
         return response.status(HttpStatus.OK).json({
-            row
+            rows
         })
     }
 }

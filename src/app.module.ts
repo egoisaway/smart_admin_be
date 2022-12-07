@@ -21,6 +21,7 @@ import { ContactsModule } from './contacts/contacts.module';
 import { ContactTypesModule } from './contact_types/contact_types.module';
 import { ClientsModule } from './clients/clients.module';
 import { CitiesModule } from './cities/cities.module';
+import { PeopleJobsModule } from './people_jobs/people_jobs.module';
 
 @Module({
   imports: [
@@ -51,7 +52,8 @@ import { CitiesModule } from './cities/cities.module';
     ContactsModule,
     ContactTypesModule,
     ClientsModule,
-    CitiesModule
+    CitiesModule,
+    PeopleJobsModule
   ],
   controllers: [AppController],
   providers: [AppService],

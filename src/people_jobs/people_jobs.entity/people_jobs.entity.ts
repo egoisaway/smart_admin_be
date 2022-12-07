@@ -1,21 +1,12 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
-export class People {
+export class PeopleJobs {
     @PrimaryGeneratedColumn()
     id: number;
 
     @Column()
-    client_id: number;
-
-    @Column()
-    cpf: number;
-
-    @Column()
     name: string;
-
-    @Column()
-    job: number;
 
     @Column()
     created_at: Date;
