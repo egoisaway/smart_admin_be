@@ -14,7 +14,14 @@ export class SalesService {
         private repository: Repository<Sales>,
 
         @InjectRepository(SalesFull)
-        private view: Repository<SalesFull>
+        private view: Repository<SalesFull>,
+
+        @InjectRepository(Clients)
+        private clientsRepository: Repository<Clients>,
+        @InjectRepository(People)
+        private peopleRepository: Repository<People>,
+        @InjectRepository(Contacts)
+        private contactsRepository: Repository<Contacts>
     ){}
 
     getAll(): Promise<Sales[]> {
@@ -33,14 +40,35 @@ export class SalesService {
     }
 
     sing(params): any{
-        return this.repository
-        .createQueryBuilder()
-        .insert()
-        .into(Sales)
-        .values([
-          params
-        ])
-        .orUpdate({ conflict_target: ['id'], overwrite: [''] })
-        .execute()
+
+        // this.repository
+        // .createQueryBuilder().insert().into(Clients)
+        // .values([params.client])
+        // .orUpdate(['cnpj'],['name'])
+        // .execute()
+        
+        // this.repository
+        // .createQueryBuilder().insert().into(People)
+        // .values(params.people)
+        // .orUpdate(['name'],['cpf','job'])
+        // .execute()
+
+        // this.repository
+        // .createQueryBuilder().insert().into(Contacts)
+        // .values(params.contacts)
+        // .orUpdate(['contact'],['person_id'])
+        // .execute()
+
+        // this.repository
+        // .createQueryBuilder().insert().into(Sales)
+        // .values([params.sale])
+        // .execute()
+        
+        this.clientsRepository.upsert([params.client],["cnpj"])
+        this.peopleRepository.upsert(params.people,["name"])
+        this.contactsRepository.upsert(params.contacts,["contact"])
+        this.repository.insert([params.sale])
+
+        return 'ok'
     }
 }

@@ -21,6 +21,9 @@ export class Sales {
     vtc_broadbands: number;
 
     @Column()
+    observation: string;
+
+    @Column()
     created_at: Date;
 
     @Column()
