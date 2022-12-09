@@ -6,6 +6,9 @@ export class Lines {
     id: number;
 
     @Column()
+    service_id: number;
+
+    @Column()
     line_type_id: number;
 
     @Column()

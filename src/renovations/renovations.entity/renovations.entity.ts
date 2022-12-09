@@ -6,10 +6,10 @@ export class Renovations {
     id: number;
 
     @Column()
-    line_id: number;
+    client_id: number;
 
     @Column()
-    sale_id: number;
+    quantity: number;
 
     @Column()
     created_at: Date;

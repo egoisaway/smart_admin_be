@@ -6,9 +6,6 @@ export class Plans {
     id: number;
 
     @Column()
-    service_id: number;
-
-    @Column()
     offer: string;
 
     @Column()
