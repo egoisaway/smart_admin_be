@@ -8,7 +8,6 @@ import { Contacts } from 'src/contacts/contacts.entity/contacts.entity';
 import { SalesFull } from './sales.entity/salesfull.entity';
 import { Lines } from 'src/lines/lines.entity/lines.entity';
 import { Renovations } from 'src/renovations/renovations.entity/renovations.entity';
-import { notDeepEqual } from 'assert';
 
 @Injectable()
 export class SalesService {
@@ -50,31 +49,31 @@ export class SalesService {
         
         //upsert and gets data if the addition is new
         this.clientsRepository.upsert([params.client],["cnpj"])
-        let client:any  = this.clientsRepository.findOne({where:{cnpj:params.client.cnpj},order:{id:'DESC'}})
-        
-        params.people[0].client_id   == null? params.people.forEach((person:any)    => {person.client_id = client.id})  : false 
+        let client:any  = this.clientsRepository.createQueryBuilder().where("clients.cnpj = :cnpj",{cnpj:params.client.cnpj}).getRawOne()        
+        params.people[0].client_id = null || params.people[0].client_id == undefined? params.people.forEach((person:any)    => {person.client_id = client.Clients_id})  : false 
         this.peopleRepository.upsert(params.people,["name"])
-        let person:any  = this.peopleRepository.findOne({where:{job:1,client_id:params.client.cnpj},order:{id:'DESC'}})
+        let person:any  = this.peopleRepository.createQueryBuilder().where("people.client_id = :client_id",{client_id:client.Clients_id}).andWhere("people.job = 1").getRawOne()        
         
-        params.contacts[0].person_id == null? params.contacts.forEach((contact:any) => {contact.person_id = person.id}) : false
+        params.contacts[0].person_id == null || params.contacts[0].person_id == undefined? params.contacts.forEach((contact:any) => {contact.person_id = person.People_id}) : false
         this.contactsRepository.upsert(params.contacts,["contact"])
         
-        params.sale.client_id        == null? params.sale.forEach((sale:any)        => {sale.client_id    = client.id}) : false
-        params.sale.person_id        == null? params.sale.forEach((sale:any)        => {sale.person_id    = person.id}) : false
+        params.sale.client_id == null || params.sale.client_id == undefined? params.sale.client_id    = client.Clients_id : false
+        params.sale.person_id == null || params.sale.person_id == undefined? params.sale.person_id    = person.People_id : false
         this.repository.insert([params.sale])
         
         
         //renovations and lines declarations
-        let sale:any  = this.repository.findOne({where:{client_id:client.id},order:{id:'DESC'}})
+        // let sale:any  = this.repository.findOne({where:{client_id:client.id},order:{id:'DESC'}})
+        let sale:any  = this.repository.createQueryBuilder().where("sales.client_id = :client_id",{client_id:client.Clients_id}).getRawOne()        
 
         //sale_id for lines
-        params.lines.forEach((line:any) => {line.sale_id = sale.id})
+        params.lines.forEach((line:any) => {line.sale_id = sale.Sale_id})
         this.linesRepository.insert(params.lines)
 
-        params.renovations.client_id == null? params.renovations.client_id=client.id : false 
-        params.renovations.sale_id = sale.id
+        params.renovations.client_id == null || params.renovations.client_id == undefined? params.renovations['client_id']=client.Clients_id : false 
+        params.renovations['sale_id'] = sale.Sale_id
         this.renovationsRepository.insert(params.renovations)
 
-        return 'ok'
+        return person
     }
 }
