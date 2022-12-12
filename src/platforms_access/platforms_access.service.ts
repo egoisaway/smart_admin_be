@@ -22,8 +22,9 @@ export class PlatformsAccessService {
         return this.repository.findOne(id);
     }
 
-    create(client): Promise<PlatformsAccess> {
-        return this.repository.save(client);
+    create(data): any {
+        this.repository.save(data)
+        return '👍'
     }
     find(params): Promise<PlatformsAccessFull[]> {
         return this.view.find(params);

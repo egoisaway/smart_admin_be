@@ -7,9 +7,9 @@ export class PlatformsAccessController {
 
     @Post()
     async create(@Res() response, @Body() data) {
-        const newRow = await this.service.create(data);
+        const res = await this.service.create(data);
         return response.status(HttpStatus.CREATED).json({
-            newRow
+            res
         })
     }
 
