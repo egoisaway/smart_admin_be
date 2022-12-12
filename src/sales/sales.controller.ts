@@ -37,6 +37,14 @@ export class SalesController {
         })
     }
 
+    @Post('/update')
+    async update(@Res() response, @Body() params) {
+        const res = await this.service.update(params);
+        return response.status(HttpStatus.OK).json({
+            res
+        })
+    }
+
     @Post('/sing')
     async sing(@Res() response, @Body() params) {
         const res = await this.service.sing(params);

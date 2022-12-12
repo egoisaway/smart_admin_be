@@ -22,6 +22,7 @@ import { ContactTypesModule } from './contact_types/contact_types.module';
 import { ClientsModule } from './clients/clients.module';
 import { CitiesModule } from './cities/cities.module';
 import { PeopleJobsModule } from './people_jobs/people_jobs.module';
+import { StatusesModule } from './statuses/statuses.module';
 
 @Module({
   imports: [
@@ -53,7 +54,8 @@ import { PeopleJobsModule } from './people_jobs/people_jobs.module';
     ContactTypesModule,
     ClientsModule,
     CitiesModule,
-    PeopleJobsModule
+    PeopleJobsModule,
+    StatusesModule
   ],
   controllers: [AppController],
   providers: [AppService],

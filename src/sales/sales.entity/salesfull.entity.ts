@@ -18,10 +18,19 @@ export class SalesFull {
     vtc_lines: number;
 
     @Column()
+    vtc_broadbands: number;
+
+    @Column()
     vtc_devices: number;
 
     @Column()
-    vtc_broadbands: number;
+    renovations: number;
+
+    @Column()
+    observation: string;
+
+    @Column()
+    status: string;
 
     @Column()
     created_at: Date;

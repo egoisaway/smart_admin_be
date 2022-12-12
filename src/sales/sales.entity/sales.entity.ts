@@ -24,6 +24,9 @@ export class Sales {
     observation: string;
 
     @Column()
+    status_id: number;
+
+    @Column()
     created_at: Date;
 
     @Column()
