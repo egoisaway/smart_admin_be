@@ -25,4 +25,7 @@ export class ClientsFull {
 
     @Column()
     remaining_to_renovate: string;
+
+    @Column()
+    will_renovate: string;
 }
